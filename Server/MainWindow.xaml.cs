@@ -57,8 +57,9 @@ namespace Server
 
         private void Build_btn_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Uri pageUri = new Uri($"Pages/Build.xaml", UriKind.Relative);
-            MainFrame.Navigate(pageUri);
+            //Uri pageUri = new Uri($"Pages/Build.xaml", UriKind.Relative);
+            //MainFrame.Navigate(pageUri);
+            MessageBox.Show("由于技术限制，现在只写了一个加载的DLL，在Client文件夹中，看README.txt操作.");
         }
     }
 
