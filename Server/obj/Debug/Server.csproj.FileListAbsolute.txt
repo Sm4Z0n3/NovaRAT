@@ -18,3 +18,8 @@ E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\Home.g.cs
 E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\Home.baml
 E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\StartPage.g.cs
 E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\StartPage.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\Button.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\ListBox.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\App.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\NovaTextBox.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\ComboBox.baml

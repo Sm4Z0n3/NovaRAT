@@ -15,6 +15,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using Application = System.Windows.Application;
+using Microsoft.SqlServer.Server;
 
 namespace Server.Page
 {
@@ -23,18 +28,23 @@ namespace Server.Page
     /// </summary>
     public partial class Home
     {
+        private TcpListener listener;
+        private TcpClient client;
+
         public Home()
         {
             InitializeComponent();
-            Loaded += (serder, e) => {
+            Loaded += (sender, e) => {
                 var fadeInAnimation = new DoubleAnimation { From = 0, To = 1, Duration = TimeSpan.FromSeconds(0.5) };
                 BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             };
+
+            StartServerAsync(); // 启动服务器异步方法
         }
-        static void StartServer()
+
+        private async Task StartServerAsync()
         {
-            // 创建一个TCP监听套接字
-            TcpListener listener = new TcpListener(IPAddress.Any, 12345); // 12345 是服务器端口号
+            listener = new TcpListener(IPAddress.Any, 12345); // 12345 是服务器端口号
             listener.Start();
             Console.WriteLine("服务器已启动，正在监听端口 12345...");
 
@@ -43,12 +53,11 @@ namespace Server.Page
                 while (true)
                 {
                     // 等待客户端连接
-                    TcpClient client = listener.AcceptTcpClient();
+                    client = await listener.AcceptTcpClientAsync();
                     Console.WriteLine("客户端已连接...");
 
-                    // 处理客户端连接的线程
-                    System.Threading.Thread clientThread = new System.Threading.Thread(() => HandleClient(client));
-                    clientThread.Start();
+                    // 处理客户端连接的异步方法
+                    await HandleClientAsync(client);
                 }
             }
             finally
@@ -56,22 +65,36 @@ namespace Server.Page
                 listener.Stop();
             }
         }
-        static void HandleClient(TcpClient client)
+
+        private async Task HandleClientAsync(TcpClient client)
         {
+            IPEndPoint remoteEndPoint = (IPEndPoint)client.Client.RemoteEndPoint;
+            string ipAddress = remoteEndPoint.Address.ToString();
+            int port = remoteEndPoint.Port;
+            string newItem = $"{ipAddress} | {port}";
+
+            await Dispatcher.InvokeAsync(() =>
+            {
+                if (!Devices.Items.Contains(newItem))
+                {
+                    Devices.Items.Add(newItem);
+                }
+            });
+
             try
             {
-                NetworkStream stream = client.GetStream();
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-
-                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                NetworkStream stream = client.GetStream();
+                while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
                     string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine("接收到客户端消息: " + dataReceived);
+                    Console.WriteLine(">>> " + dataReceived);
 
-                    // 响应客户端消息（这里简单地将消息返回给客户端）
-                    byte[] responseBuffer = Encoding.ASCII.GetBytes("服务器已接收到消息: " + dataReceived);
-                    stream.Write(responseBuffer, 0, responseBuffer.Length);
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        Log_.Text += dataReceived + "\n";
+                    });
                 }
             }
             catch (Exception ex)
@@ -81,8 +104,38 @@ namespace Server.Page
             finally
             {
                 client.Close();
-                Console.WriteLine("客户端连接已关闭.");
+
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    Devices.Items.Remove(newItem);
+                });
             }
         }
+
+
+        private async void CommandTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    string mode = "cmd";
+                    if(MsgMode.SelectedIndex == 0)
+                        mode = "command";
+                    if (MsgMode.SelectedIndex == 1)
+                        mode = "string";
+                    NetworkStream stream = client.GetStream();
+                    byte[] responseBuffer = Encoding.ASCII.GetBytes(mode+"|"+CommandTextBox.Text);
+                    await stream.WriteAsync(responseBuffer, 0, responseBuffer.Length);
+                    Log_.Text += ">>>" + CommandTextBox.Text + "\n";
+                    CommandTextBox.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Log_.Text += ex.Message.ToString() + "\n";
+            }
+        }
+
     }
 }

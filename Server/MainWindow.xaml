@@ -5,58 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="NovaRat" Height="666" Width="1184" FontFamily="Cascadia Code Light" WindowStyle="None" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True">
-    <Window.Background>
-        <ImageBrush/>
-    </Window.Background>
-    <Window.Resources>
-        <Style x:Key="CustomButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="#7FFF0000"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
+        Title="NovaRat" Height="749" Width="1316" FontFamily="Cascadia Code Light" WindowStyle="None" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" Background="{x:Null}">
 
-    <Grid x:Name="Main_" Width="1100" Height="610">
-        <Border CornerRadius="20,20,20,20" BorderThickness="1,1,1,1" Width="1100" Height="610">
+    <Grid x:Name="Main_" Margin="55,30,61,26">
+        <Border CornerRadius="20,20,20,20" BorderThickness="1,1,1,1">
             <Border.Effect>
                 <BlurEffect Radius="8"/>
             </Border.Effect>
             <Border.Background>
-                <ImageBrush ImageSource="/demo1.png"/>
+                <ImageBrush ImageSource="/Style/demo1.png"/>
             </Border.Background>
             <Rectangle Margin="442,176,446,428" Stroke="Black"/>
         </Border>
-        <Border Grid.Column="0" Background="#19D3D3D3" Margin="0,0,895,0" CornerRadius="20,20,20,20">
+        <Border Grid.Column="0" Background="#19D3D3D3" CornerRadius="20,20,20,20" Width="220" HorizontalAlignment="Left">
             <Grid Background="#02FFFFFF">
                 <Grid.Effect>
                     <DropShadowEffect Color="White" BlurRadius="20" ShadowDepth="7"/>
                 </Grid.Effect>
-                <Label Content="NovaRAT" Margin="11,11,20,535" FontSize="36" Background="{x:Null}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label x:Name="Home_btn" Content="Home" HorizontalAlignment="Center" Height="43" Margin="0,175,0,0" VerticalAlignment="Top" Width="205" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label x:Name="Home_btn_Copy" Content="Home" HorizontalAlignment="Center" Height="43" Margin="0,332,0,0" VerticalAlignment="Top" Width="205" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label x:Name="Home_btn_Copy1" Content="Home" HorizontalAlignment="Center" Height="43" Margin="0,254,0,0" VerticalAlignment="Top" Width="205" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="NovaRAT" Margin="11,11,20,535" FontSize="36" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="Home_btn" Content="Home" Height="43" Margin="0,190,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Home_btn_Copy" Content="Home" Height="43" Margin="0,357,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Home_btn_Copy1" Content="Home" Height="43" Margin="0,274,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
             </Grid>
         </Border>
 
-        <Frame x:Name="ContentFrame" Margin="205,0,0,0" Source="/Pages/StartPage.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="ContentFrame" Margin="220,0,0,0" Source="/Pages/StartPage.xaml" NavigationUIVisibility="Hidden"/>
 
 
         <Grid Margin="1018,3,0,567">

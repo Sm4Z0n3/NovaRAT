@@ -1,7 +1,7 @@
 ﻿Server
 
 
-winexe
+exe
 C#
 .cs
 E:\NovaRAT\NovaRAT\Server\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\NovaRAT\NovaRAT\Server\App.xaml
-31072293791
+71316279073
 
 8-460981935
 13-1310406943
-MainWindow.xaml;Pages\Home.xaml;Pages\StartPage.xaml;
+MainWindow.xaml;Pages\Home.xaml;Pages\StartPage.xaml;Style\Button.xaml;Style\ComboBox.xaml;Style\ListBox.xaml;Style\NovaTextBox.xaml;
 
 True
 

@@ -12,7 +12,7 @@
                 <BlurEffect Radius="7" RenderingBias="Performance" KernelType="Gaussian"/>
             </Border.Effect>
             <Border.Background>
-                <ImageBrush ImageSource="/demo1.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Style/demo1.png" Stretch="UniformToFill"/>
             </Border.Background>
 
         </Border>

@@ -1,7 +1,7 @@
 ﻿Client
 
 
-winexe
+exe
 C#
 .cs
 E:\NovaRAT\NovaRAT\Client\obj\Debug\
@@ -16,5 +16,5 @@ E:\NovaRAT\NovaRAT\Client\App.xaml
 13-1310406943
 MainWindow.xaml;
 
-False
+True
 
