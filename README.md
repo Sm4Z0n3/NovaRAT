@@ -22,9 +22,6 @@ graph TD;
     Server-->Client2;
     Server-->Client3;
     Server-->Client4;
-    Server-->Client5;
-    Server-->Client6;
-    Server-->Client7;
     Server-->...;
 ```
 
