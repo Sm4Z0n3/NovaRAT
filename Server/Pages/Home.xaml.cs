@@ -44,19 +44,16 @@ namespace Server.Page
 
         private async Task StartServerAsync()
         {
-            listener = new TcpListener(IPAddress.Any, 12345); // 12345 是服务器端口号
-            listener.Start();
-            Console.WriteLine("服务器已启动，正在监听端口 12345...");
-
             try
             {
+                listener = new TcpListener(IPAddress.Any, 12345); // 12345 是服务器端口号
+                listener.Start();
+                Console.WriteLine("服务器已启动，正在监听端口 12345...");
                 while (true)
                 {
-                    // 等待客户端连接
                     client = await listener.AcceptTcpClientAsync();
                     Console.WriteLine("客户端已连接...");
 
-                    // 处理客户端连接的异步方法
                     await HandleClientAsync(client);
                 }
             }
@@ -68,27 +65,27 @@ namespace Server.Page
 
         private async Task HandleClientAsync(TcpClient client)
         {
+            
             IPEndPoint remoteEndPoint = (IPEndPoint)client.Client.RemoteEndPoint;
             string ipAddress = remoteEndPoint.Address.ToString();
             int port = remoteEndPoint.Port;
             string newItem = $"{ipAddress} | {port}";
-
-            await Dispatcher.InvokeAsync(() =>
-            {
-                if (!Devices.Items.Contains(newItem))
-                {
-                    Devices.Items.Add(newItem);
-                }
-            });
-
             try
             {
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    if (!Devices.Items.Contains(newItem))
+                    {
+                        Devices.Items.Add(newItem);
+                    }
+                });
+
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 NetworkStream stream = client.GetStream();
                 while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
-                    string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                    string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine(">>> " + dataReceived);
 
                     await Dispatcher.InvokeAsync(() =>
@@ -125,7 +122,7 @@ namespace Server.Page
                     if (MsgMode.SelectedIndex == 1)
                         mode = "string";
                     NetworkStream stream = client.GetStream();
-                    byte[] responseBuffer = Encoding.ASCII.GetBytes(mode+"|"+CommandTextBox.Text);
+                    byte[] responseBuffer = Encoding.UTF8.GetBytes(mode+"|"+CommandTextBox.Text);
                     await stream.WriteAsync(responseBuffer, 0, responseBuffer.Length);
                     Log_.Text += ">>>" + CommandTextBox.Text + "\n";
                     CommandTextBox.Text = "";

@@ -20,21 +20,13 @@
                         </Border.Effect>
                         <!-- 圆角半径 -->
                         <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost" />
-                            <TextBox Background="Transparent"
-                                    BorderThickness="0"
+                            <TextBox Background="#02FFFFFF"
                                     Padding="{TemplateBinding Padding}"
                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     FontSize="{TemplateBinding FontSize}"
                                     Foreground="{TemplateBinding Foreground}"
                                     Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay}" />
-                            <Border Background="White" Opacity="0.2" >
-                                <!-- 模糊效果 -->
-                                <Border.OpacityMask>
-                                    <VisualBrush Visual="{Binding ElementName=PART_ContentHost}" />
-                                </Border.OpacityMask>
-                            </Border>
                         </Grid>
                     </Border>
                 </ControlTemplate>

@@ -45,7 +45,7 @@ namespace Server
         private void Home_btn_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Uri pageUri = new Uri($"Pages/Home.xaml", UriKind.Relative);
-            ContentFrame.Navigate(pageUri);
+            MainFrame.Navigate(pageUri);
         }
     }
 

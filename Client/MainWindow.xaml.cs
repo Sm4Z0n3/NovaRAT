@@ -34,6 +34,7 @@ namespace Client
                 var fadeInAnimation = new DoubleAnimation { From = 0, To = 1, Duration = TimeSpan.FromSeconds(0.5) };
                 BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             };
+           
             StartClient();
         }
         static async Task StartClient()
@@ -53,7 +54,7 @@ namespace Client
                         int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                         if (bytesRead > 0)
                         {
-                            string response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                             Console.WriteLine(response);
 
                             string[] parts = response.Split('|');
@@ -63,7 +64,7 @@ namespace Client
 
                                 string result = RunCommand(command);
 
-                                byte[] resultBytes = Encoding.ASCII.GetBytes(result);
+                                byte[] resultBytes = Encoding.UTF8.GetBytes(result);
                                 await stream.WriteAsync(resultBytes, 0, resultBytes.Length);
                             }
                         }

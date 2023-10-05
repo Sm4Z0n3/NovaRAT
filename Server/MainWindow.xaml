@@ -15,8 +15,8 @@
             <Border.Background>
                 <ImageBrush ImageSource="/Style/demo1.png"/>
             </Border.Background>
-            <Rectangle Margin="442,176,446,428" Stroke="Black"/>
         </Border>
+        
         <Border Grid.Column="0" Background="#19D3D3D3" CornerRadius="20,20,20,20" Width="220" HorizontalAlignment="Left">
             <Grid Background="#02FFFFFF">
                 <Grid.Effect>
@@ -30,7 +30,8 @@
             </Grid>
         </Border>
 
-        <Frame x:Name="ContentFrame" Margin="220,0,0,0" Source="/Pages/StartPage.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Margin="220,0,0,0" Source="/Pages/StartPage.xaml" NavigationUIVisibility="Hidden">
+        </Frame>
 
 
         <Grid Margin="1018,3,0,567">

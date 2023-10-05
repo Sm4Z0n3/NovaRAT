@@ -7,12 +7,21 @@
       xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Server.Page.Home"
       mc:Ignorable="d" 
       d:DesignHeight="693" d:DesignWidth="980"
-      Title="Home">
+    KeepAlive="True"
+      Title="Home" FontFamily="Cascadia Code Light" >
 
-    <Grid>
-        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,22,465" Background="#19D4D4D4" Foreground="White"/>
-        <TextBox x:Name="CommandTextBox" Style="{StaticResource NovaTextBox}" HorizontalAlignment="Left" Height="34" Margin="230,625,0,0" TextWrapping="Wrap" Text="echo Hello" VerticalAlignment="Top" Width="714" Background="#33EEEEEE" Foreground="White" BorderBrush="#19FFFFFF" Cursor="IBeam" KeyDown="CommandTextBox_KeyDown"/>
-        <TextBox x:Name="Log_"  Style="{StaticResource NovaTextBox}"  HorizontalAlignment="Center" Height="339" Margin="0,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="936" Background="#33EEEEEE" BorderBrush="{x:Null}" Foreground="White"/>
+    <Grid >
+        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,22,465" Background="#4CD4D4D4" Foreground="White"/>
+        <TextBox x:Name="CommandTextBox" HorizontalAlignment="Left" Height="34" Margin="230,625,0,0" TextWrapping="Wrap" Text="echo Hello" VerticalAlignment="Top" Width="714" Background="#33EEEEEE" Foreground="White" BorderBrush="{x:Null}" Cursor="IBeam" KeyDown="CommandTextBox_KeyDown" BorderThickness="0,0,0,0" FontSize="16" VerticalContentAlignment="Center">
+            <TextBox.Effect>
+                <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>
+            </TextBox.Effect>
+        </TextBox>
+        <TextBox x:Name="Log_" HorizontalAlignment="Center" Height="339" Margin="0,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="936" Background="#33EEEEEE" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,0,0,0" Text="NovaShell Copyright by Nova Studio&#xD;&#xA;Select &quot;Internal&quot; and enter &quot;.help&quot; to view help" FontSize="20">
+            <TextBox.Effect>
+                <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>
+            </TextBox.Effect>
+        </TextBox>
         <ComboBox x:Name="MsgMode" Style="{StaticResource NovaComboBox}" HorizontalAlignment="Left" Height="34" Margin="35,625,0,0" VerticalAlignment="Top" Width="144" Background="White" SelectedIndex="0" FontSize="16" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ComboBoxItem Content="Command" />
             <ComboBoxItem Content="String" />
