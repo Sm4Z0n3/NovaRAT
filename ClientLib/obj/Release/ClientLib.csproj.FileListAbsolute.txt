@@ -1,0 +1,6 @@
+E:\NovaRAT\NovaRAT\ClientLib\bin\Release\ClientLib.dll
+E:\NovaRAT\NovaRAT\ClientLib\bin\Release\ClientLib.pdb
+E:\NovaRAT\NovaRAT\ClientLib\obj\Release\ClientLib.csproj.AssemblyReference.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Release\ClientLib.csproj.CoreCompileInputs.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Release\ClientLib.dll
+E:\NovaRAT\NovaRAT\ClientLib\obj\Release\ClientLib.pdb

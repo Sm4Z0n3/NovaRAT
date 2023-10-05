@@ -11,7 +11,7 @@
       Title="Home" FontFamily="Cascadia Code Light" >
 
     <Grid >
-        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,22,465" Background="#4CD4D4D4" Foreground="White"/>
+        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,22,465" Background="#4CD4D4D4" Foreground="White" SelectionChanged="Devices_SelectionChanged"/>
         <TextBox x:Name="CommandTextBox" HorizontalAlignment="Left" Height="34" Margin="230,625,0,0" TextWrapping="Wrap" Text="echo Hello" VerticalAlignment="Top" Width="714" Background="#33EEEEEE" Foreground="White" BorderBrush="{x:Null}" Cursor="IBeam" KeyDown="CommandTextBox_KeyDown" BorderThickness="0,0,0,0" FontSize="16" VerticalContentAlignment="Center">
             <TextBox.Effect>
                 <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>

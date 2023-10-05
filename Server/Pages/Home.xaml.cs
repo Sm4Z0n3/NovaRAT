@@ -28,8 +28,6 @@ namespace Server.Page
     /// </summary>
     public partial class Home
     {
-        public TcpListener listener;
-        public TcpClient client;
 
         public Home()
         {
@@ -42,6 +40,11 @@ namespace Server.Page
             StartServerAsync(); // 启动服务器异步方法
         }
 
+        public TcpListener listener;
+        private readonly List<TcpClient> clients = new List<TcpClient>(); // 用于存储客户端连接
+        private TcpClient selectedClient; // 用于存储当前选中的客户端
+        private readonly Dictionary<TcpClient, StringBuilder> clientLogs = new Dictionary<TcpClient, StringBuilder>(); // 用于存储每个客户的日志
+
         private async Task StartServerAsync()
         {
             try
@@ -51,10 +54,16 @@ namespace Server.Page
                 Console.WriteLine("服务器已启动，正在监听端口 12345...");
                 while (true)
                 {
-                    client = await listener.AcceptTcpClientAsync();
+                    TcpClient client = await listener.AcceptTcpClientAsync();
                     Console.WriteLine("客户端已连接...");
 
-                    await HandleClientAsync(client);
+                    // 将新连接的客户端添加到列表中
+                    clients.Add(client);
+
+                    // 初始化该客户端的日志
+                    clientLogs[client] = new StringBuilder();
+
+                    Task.Run(() => HandleClientAsync(client));
                 }
             }
             finally
@@ -65,7 +74,6 @@ namespace Server.Page
 
         private async Task HandleClientAsync(TcpClient client)
         {
-            
             IPEndPoint remoteEndPoint = (IPEndPoint)client.Client.RemoteEndPoint;
             string ipAddress = remoteEndPoint.Address.ToString();
             int port = remoteEndPoint.Port;
@@ -90,8 +98,22 @@ namespace Server.Page
 
                     await Dispatcher.InvokeAsync(() =>
                     {
-                        Log_.Text += dataReceived + "\n";
+                        // 向选中的客户端的日志中添加数据
+                        clientLogs[selectedClient].Append(dataReceived).Append("\n");
+
+                        // 更新 Log_ 文本
+                        Log_.Text = clientLogs[selectedClient].ToString();
                     });
+
+                    // 向所有客户端发送数据，但仅向选中的客户端回复
+                    foreach (var c in clients)
+                    {
+                        if (c != client)
+                        {
+                            byte[] responseBuffer = Encoding.UTF8.GetBytes(dataReceived);
+                            await c.GetStream().WriteAsync(responseBuffer, 0, responseBuffer.Length);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -100,12 +122,44 @@ namespace Server.Page
             }
             finally
             {
-                client.Close();
+                // 从列表中移除断开的客户端
+                clients.Remove(client);
 
                 await Dispatcher.InvokeAsync(() =>
                 {
                     Devices.Items.Remove(newItem);
                 });
+
+                // 从字典中移除该客户端的日志
+                clientLogs.Remove(client);
+            }
+        }
+
+        private void Devices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Devices.SelectedItem != null)
+            {
+                string selectedItem = Devices.SelectedItem.ToString();
+                string[] parts = selectedItem.Split('|');
+
+                if (parts.Length >= 2)
+                {
+                    string ipAddress = parts[0].Trim();
+                    int port = int.Parse(parts[1].Trim());
+
+                    // 根据选中的客户端信息找到相应的TcpClient
+                    selectedClient = clients.FirstOrDefault(c =>
+                    {
+                        IPEndPoint remoteEndPoint = (IPEndPoint)c.Client.RemoteEndPoint;
+                        return remoteEndPoint.Address.ToString() == ipAddress && remoteEndPoint.Port == port;
+                    });
+
+                    // 更新 Log_ 文本为选中客户端的日志
+                    if (selectedClient != null)
+                    {
+                        Log_.Text = clientLogs[selectedClient].ToString();
+                    }
+                }
             }
         }
 
@@ -117,15 +171,26 @@ namespace Server.Page
                 if (e.Key == Key.Enter)
                 {
                     string mode = "cmd";
-                    if(MsgMode.SelectedIndex == 0)
+                    if (MsgMode.SelectedIndex == 0)
                         mode = "command";
                     if (MsgMode.SelectedIndex == 1)
                         mode = "string";
-                    NetworkStream stream = client.GetStream();
-                    byte[] responseBuffer = Encoding.UTF8.GetBytes(mode+"|"+CommandTextBox.Text);
-                    await stream.WriteAsync(responseBuffer, 0, responseBuffer.Length);
-                    Log_.Text += ">>>" + CommandTextBox.Text + "\n";
-                    CommandTextBox.Text = "";
+
+                    // 发送数据给选中的客户端
+                    if (selectedClient != null)
+                    {
+                        NetworkStream stream = selectedClient.GetStream();
+                        byte[] responseBuffer = Encoding.UTF8.GetBytes(mode + "|" + CommandTextBox.Text);
+                        await stream.WriteAsync(responseBuffer, 0, responseBuffer.Length);
+
+                        // 向选中的客户端的日志中添加数据
+                        clientLogs[selectedClient].Append(">>>" + CommandTextBox.Text + "\n");
+
+                        // 更新 Log_ 文本
+                        Log_.Text = clientLogs[selectedClient].ToString();
+
+                        CommandTextBox.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -133,6 +198,7 @@ namespace Server.Page
                 Log_.Text += ex.Message.ToString() + "\n";
             }
         }
+
 
     }
 }
