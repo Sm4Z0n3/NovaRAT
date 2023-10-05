@@ -47,6 +47,19 @@ namespace Server
             Uri pageUri = new Uri($"Pages/Home.xaml", UriKind.Relative);
             MainFrame.Navigate(pageUri);
         }
+
+        private void Files_btn_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Uri pageUri = new Uri($"Pages/Files.xaml", UriKind.Relative);
+            //MainFrame.Navigate(pageUri);
+            MessageBox.Show("有点难写，下次一定.");
+        }
+
+        private void Build_btn_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Uri pageUri = new Uri($"Pages/Build.xaml", UriKind.Relative);
+            MainFrame.Navigate(pageUri);
+        }
     }
 
 

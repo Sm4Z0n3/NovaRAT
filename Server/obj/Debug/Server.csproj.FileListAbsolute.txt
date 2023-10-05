@@ -23,3 +23,7 @@ E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\ListBox.baml
 E:\NovaRAT\NovaRAT\Server\obj\Debug\App.baml
 E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\NovaTextBox.baml
 E:\NovaRAT\NovaRAT\Server\obj\Debug\Style\ComboBox.baml
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\Files.g.cs
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Pages\Files.baml
+E:\NovaRAT\NovaRAT\Server\bin\Debug\Newtonsoft.Json.dll
+E:\NovaRAT\NovaRAT\Server\obj\Debug\Server.csproj.CopyComplete

@@ -28,8 +28,8 @@ namespace Server.Page
     /// </summary>
     public partial class Home
     {
-        private TcpListener listener;
-        private TcpClient client;
+        public TcpListener listener;
+        public TcpClient client;
 
         public Home()
         {

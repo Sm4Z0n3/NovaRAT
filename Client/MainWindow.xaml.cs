@@ -44,7 +44,8 @@ namespace Client
                 try
                 {
                     TcpClient client = new TcpClient();
-                    client.Connect(IPAddress.Loopback, 12345); 
+                    int port = int.Parse("{CONNECTPORT}");
+                    client.Connect("{CONNECTIPADDRESS}", port); 
 
                     NetworkStream stream = client.GetStream();
                     byte[] buffer = new byte[1024];

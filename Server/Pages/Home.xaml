@@ -7,7 +7,7 @@
       xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Server.Page.Home"
       mc:Ignorable="d" 
       d:DesignHeight="693" d:DesignWidth="980"
-    KeepAlive="True"
+      KeepAlive="True"
       Title="Home" FontFamily="Cascadia Code Light" >
 
     <Grid >
@@ -17,7 +17,7 @@
                 <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>
             </TextBox.Effect>
         </TextBox>
-        <TextBox x:Name="Log_" HorizontalAlignment="Center" Height="339" Margin="0,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="936" Background="#33EEEEEE" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,0,0,0" Text="NovaShell Copyright by Nova Studio&#xD;&#xA;Select &quot;Internal&quot; and enter &quot;.help&quot; to view help" FontSize="20">
+        <TextBox x:Name="Log_" HorizontalAlignment="Center" Height="339" Margin="0,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="936" Background="#33EEEEEE" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,0,0,0" Text="NovaShell Copyright by Nova Studio&#xA;Select &quot;Internal&quot; and enter &quot;.help&quot; to view help&#xD;&#xA;" FontSize="20">
             <TextBox.Effect>
                 <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>
             </TextBox.Effect>

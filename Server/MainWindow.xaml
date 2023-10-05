@@ -24,13 +24,13 @@
                 </Grid.Effect>
                 <Label Content="NovaRAT" Margin="11,11,20,535" FontSize="36" Background="{x:Null}" Foreground="White" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
                 <Label x:Name="Home_btn" Content="Home" Height="43" Margin="0,190,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label x:Name="Home_btn_Copy" Content="Home" Height="43" Margin="0,357,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label x:Name="Home_btn_Copy1" Content="Home" Height="43" Margin="0,274,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Home_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Build_btn" Content="Build" Height="43" Margin="0,357,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="Build_btn_PreviewMouseLeftButtonDown"/>
+                <Label x:Name="Files_btn" Content="Files" Height="43" Margin="0,274,0,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="24" PreviewMouseLeftButtonDown="Files_btn_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
             </Grid>
         </Border>
 
-        <Frame x:Name="MainFrame" Margin="220,0,0,0" Source="/Pages/StartPage.xaml" NavigationUIVisibility="Hidden">
+        <Frame x:Name="MainFrame" Margin="220,0,0,0" Source="/Pages/Home.xaml" NavigationUIVisibility="Hidden">
         </Frame>
 
 
