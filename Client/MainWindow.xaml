@@ -16,7 +16,15 @@
             </Border.Background>
 
         </Border>
-        <Grid>
+        <Grid Background="#02FFFFFF">
+            <Grid.Effect>
+                <DropShadowEffect Color="White" ShadowDepth="0" BlurRadius="10" Opacity="0.8"/>
+            </Grid.Effect>
+            <Label Content="Nova社工工具箱" HorizontalAlignment="Center" Height="45" Margin="0,25,0,0" VerticalAlignment="Top" Width="318" Foreground="White" FontSize="22" FontFamily="Bahnschrift SemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button x:Name="q_p_btn" Content="QQ查找手机号" HorizontalAlignment="Center" Height="35" Margin="0,165,0,0" VerticalAlignment="Top" Width="190" Background="#33DDDDDD" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="q_p_btn_Click"/>
+            <TextBox x:Name="q_p" HorizontalAlignment="Center" Height="25" Margin="0,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" VerticalContentAlignment="Center" FontSize="14" Foreground="White" Background="#26FFFFFF" BorderBrush="{x:Null}" BorderThickness="0,0,1,0"/>
+            <Button x:Name="p_q_btn" Content="手机号反查QQ" HorizontalAlignment="Center" Height="35" Margin="0,300,0,0" VerticalAlignment="Top" Width="190" Background="#33DDDDDD" BorderBrush="{x:Null}" Foreground="White" FontSize="16" Click="p_q_btn_Click"/>
+            <TextBox x:Name="p_q" HorizontalAlignment="Center" Height="25" Margin="0,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" VerticalContentAlignment="Center" FontSize="14" Foreground="White" Background="#26FFFFFF" BorderBrush="{x:Null}" BorderThickness="0,0,1,0"/>
 
         </Grid>
     </Grid>

