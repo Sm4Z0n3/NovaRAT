@@ -1,0 +1,8 @@
+E:\NovaRAT\NovaRAT\ScreenStreamer\bin\Debug\ScreenStreamer.exe.config
+E:\NovaRAT\NovaRAT\ScreenStreamer\bin\Debug\ScreenStreamer.exe
+E:\NovaRAT\NovaRAT\ScreenStreamer\bin\Debug\ScreenStreamer.pdb
+E:\NovaRAT\NovaRAT\ScreenStreamer\obj\Debug\ScreenStreamer.csproj.AssemblyReference.cache
+E:\NovaRAT\NovaRAT\ScreenStreamer\obj\Debug\ScreenStreamer.csproj.SuggestedBindingRedirects.cache
+E:\NovaRAT\NovaRAT\ScreenStreamer\obj\Debug\ScreenStreamer.csproj.CoreCompileInputs.cache
+E:\NovaRAT\NovaRAT\ScreenStreamer\obj\Debug\ScreenStreamer.exe
+E:\NovaRAT\NovaRAT\ScreenStreamer\obj\Debug\ScreenStreamer.pdb

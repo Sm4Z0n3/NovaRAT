@@ -11,7 +11,7 @@
       Title="Home" FontFamily="Cascadia Code Light" >
 
     <Grid >
-        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,22,465" Background="#4CD4D4D4" Foreground="White" SelectionChanged="Devices_SelectionChanged"/>
+        <ListBox x:Name="Devices" Style="{StaticResource ListBoxStyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="22,26,590,458" Background="#4CD4D4D4" Foreground="White" SelectionChanged="Devices_SelectionChanged"/>
         <TextBox x:Name="CommandTextBox" HorizontalAlignment="Left" Height="34" Margin="230,625,0,0" TextWrapping="Wrap" Text="echo Hello" VerticalAlignment="Top" Width="714" Background="#33EEEEEE" Foreground="White" BorderBrush="{x:Null}" Cursor="IBeam" KeyDown="CommandTextBox_KeyDown" BorderThickness="0,0,0,0" FontSize="16" VerticalContentAlignment="Center">
             <TextBox.Effect>
                 <DropShadowEffect Color="White" ShadowDepth="1" BlurRadius="20" Opacity="0.3"/>
@@ -26,5 +26,19 @@
             <ComboBoxItem Content="Command" />
             <ComboBoxItem Content="String" />
         </ComboBox>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="209" Margin="425,26,0,0" VerticalAlignment="Top" Width="533" Background="#4CD4D4D4" CornerRadius="10,10,10,10">
+            <Grid Background="#02000000">
+                <Label x:Name="Home_btn" Content="Show Caption" Height="40" Margin="10,10,386,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="Show_Pan_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Show_Files" Content="Show DIR" Height="40" Margin="169,10,227,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="Show_Files_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Show_File" Content="Show File" Height="40" Margin="327,10,69,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="Show_File_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Del_File" Content="Del File" Height="40" Margin="10,60,386,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="Del_File_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="Del_Dir" Content="Del Dir" Height="40" Margin="169,60,227,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="Del_Dir_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="ViewFile" Content="View File" Height="40" Margin="327,60,69,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="ViewFile_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="WriteFile" Content="Write Text" Height="40" Margin="10,111,386,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="WriteFile_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="OpenWebsite" Content="Open Website" Height="40" Margin="169,111,227,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="OpenWebsite_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="ViewAllPross" Content="Tasklist" Height="40" Margin="327,111,69,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="ViewAllPross_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label x:Name="KillTask" Content="KillTask" Height="40" Margin="10,162,386,0" VerticalAlignment="Top" Background="#19FFFFFF" BorderBrush="{x:Null}" Foreground="White" FontSize="18" PreviewMouseLeftButtonDown="KillTask_PreviewMouseLeftButtonDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

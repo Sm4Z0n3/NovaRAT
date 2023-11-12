@@ -1,0 +1,9 @@
+E:\NovaRAT\NovaRAT\ClientLib\bin\Debug\ClientLib.exe
+E:\NovaRAT\NovaRAT\ClientLib\bin\Debug\ClientLib.pdb
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.csproj.AssemblyReference.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.csproj.SuggestedBindingRedirects.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\Interop.IWshRuntimeLibrary.dll
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.csproj.ResolveComReference.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.csproj.CoreCompileInputs.cache
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.exe
+E:\NovaRAT\NovaRAT\ClientLib\obj\Debug\ClientLib.pdb

